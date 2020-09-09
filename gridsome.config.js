@@ -6,6 +6,19 @@
 
 module.exports = {
   siteName: 'Gridsome',
-  plugins: [],
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'BlogPost', 
+        path: './content/blog/**/*.md',
+      }
+    }
+  ],
+  transformers:{
+    remark: {
+      
+    }
+  }
   // pathPrefix: '',  部署的路径，是否部署在子目录下
 }
