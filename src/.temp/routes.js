@@ -1,35 +1,40 @@
-const c1 = () => import(/* webpackChunkName: "page--src--pages--post-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/Post.vue")
-const c2 = () => import(/* webpackChunkName: "page--src--pages--contact-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/contact.vue")
-const c3 = () => import(/* webpackChunkName: "page--src--pages--about-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/About.vue")
-const c4 = () => import(/* webpackChunkName: "page--node-modules--gridsome--app--pages--404-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/node_modules/gridsome/app/pages/404.vue")
-const c5 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/Index.vue")
+const c1 = () => import(/* webpackChunkName: "page--src--templates--tag-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/templates/Tag.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--templates--post-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/templates/Post.vue")
+const c3 = () => import(/* webpackChunkName: "page--src--pages--contact-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/contact.vue")
+const c4 = () => import(/* webpackChunkName: "page--src--pages--about-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/About.vue")
+const c5 = () => import(/* webpackChunkName: "page--node-modules--gridsome--app--pages--404-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/node_modules/gridsome/app/pages/404.vue")
+const c6 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "/Users/sylvanas/Documents/project-practice/blog-with-gridsome/src/pages/Index.vue")
 
 export default [
   {
-    path: "/post/",
+    path: "/tag/:id/",
     component: c1
   },
   {
-    path: "/contact/",
+    path: "/post/:id/",
     component: c2
   },
   {
-    path: "/about/",
+    path: "/contact/",
     component: c3
+  },
+  {
+    path: "/about/",
+    component: c4
   },
   {
     name: "404",
     path: "/404/",
-    component: c4
+    component: c5
   },
   {
     name: "home",
-    path: "/",
-    component: c5
+    path: "/:page(\\d+)?/",
+    component: c6
   },
   {
     name: "*",
     path: "*",
-    component: c4
+    component: c5
   }
 ]

@@ -27,44 +27,72 @@
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Name</label>
-                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name." v-model="form.name">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Email Address</label>
-                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+                <input type="email" class="form-control" placeholder="Email Address" v-model="form.email" id="email" required data-validation-required-message="Please enter your email address.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group col-xs-12 floating-label-form-group controls">
                 <label>Phone Number</label>
-                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                <input v-model="form.phone" type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Message</label>
-                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                <textarea rows="5" class="form-control" placeholder="Message" v-model="form.message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <br>
             <div id="success"></div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton" @click.prevent="onSubmit">Send</button>
           </form>
         </div>
       </div>
     </div>
   </Layout>
 </template>
+<page-query>
+</page-query>
 
 <script>
+import axios from 'axios';
 export default {
-  name: 'ContactPage'
+  name: 'ContactPage',
+  data () {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        const {data} = await axios({
+          method: 'POST',
+          url: 'http://localhost:1337/contacts',
+          data: this.form
+        })
+        console.log(data);
+        window.alert('提交成功')
+      } catch (e) {
+        window.alert(e)
+      }
+    }
+  }
 }
 </script>
 
